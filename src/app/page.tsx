@@ -43,7 +43,7 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className="relative aspect-portrait w-full overflow-hidden rounded-card bg-surface shadow-card lg:w-[526px] lg:shrink-0">
+            <div className="relative aspect-portrait w-full overflow-hidden rounded-card bg-surface shadow-card lg:w-5/12 lg:shrink-0">
               <Image
                 src={portrait}
                 alt="Акварельний портрет Марини Кнутарєвої"
