@@ -1,0 +1,65 @@
+import { Meta, ColorPalette, ColorItem, Typeset } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Tokens" />
+
+# Токени
+
+Усі значення беруться зі змінних `@theme` у `src/app/globals.css`. Тут вони не дублюються: змінив токен у `@theme` — оновиться й ця сторінка.
+
+## Кольори
+
+<ColorPalette>
+  <ColorItem title="canvas" subtitle="Фон сторінки" colors={["var(--color-canvas)"]} />
+  <ColorItem title="surface" subtitle="Картки, чіп, друга кнопка, заливка поля" colors={["var(--color-surface)"]} />
+  <ColorItem title="surface-header" subtitle="Шапка" colors={["var(--color-surface-header)"]} />
+  <ColorItem title="line" subtitle="Розділювачі й рамки карток" colors={["var(--color-line)"]} />
+  <ColorItem title="border-field" subtitle="Межа поля вводу" colors={["var(--color-border-field)"]} />
+  <ColorItem title="accent" subtitle="Єдиний акцент: кнопка, активна мова, чіп" colors={["var(--color-accent)"]} />
+  <ColorItem title="ink" subtitle="Основний текст" colors={["var(--color-ink)"]} />
+  <ColorItem title="ink-muted" subtitle="Приглушений текст" colors={["var(--color-ink-muted)"]} />
+  <ColorItem title="danger" subtitle="Текст помилки й межа поля в стані помилки" colors={["var(--color-danger)"]} />
+  <ColorItem title="glow" subtitle="Декоративне світіння hero" colors={["var(--color-glow)"]} />
+</ColorPalette>
+
+## Шкала шрифтів
+
+Шрифт `font-sans` (Manrope, з кирилицею). Розмір, висота рядка, трекінг і жирність задані парами в `@theme`.
+
+<Typeset fontFamily="var(--font-sans)" fontSizes={["var(--text-display)"]} fontWeight="var(--text-display--font-weight)" sampleText="display — Марина Кнутарєва" />
+<Typeset fontFamily="var(--font-sans)" fontSizes={["var(--text-heading)"]} fontWeight="var(--text-heading--font-weight)" sampleText="heading — Заголовок секції" />
+<Typeset fontFamily="var(--font-sans)" fontSizes={["var(--text-title)"]} fontWeight="var(--text-title--font-weight)" sampleText="title — Назва в картці" />
+<Typeset fontFamily="var(--font-sans)" fontSizes={["var(--text-lead)"]} fontWeight="var(--text-lead--font-weight)" sampleText="lead — Підзаголовок hero" />
+<Typeset fontFamily="var(--font-sans)" fontSizes={["var(--text-button)"]} fontWeight="var(--text-button--font-weight)" sampleText="button — Написати мені" />
+<Typeset fontFamily="var(--font-sans)" fontSizes={["var(--text-body)"]} fontWeight="var(--text-body--font-weight)" sampleText="body — Основний текст сторінки" />
+<Typeset fontFamily="var(--font-sans)" fontSizes={["var(--text-nav)"]} fontWeight="var(--text-nav--font-weight)" sampleText="nav — Мітки меню" />
+<Typeset fontFamily="var(--font-sans)" fontSizes={["var(--text-caption)"]} fontWeight="var(--text-caption--font-weight)" sampleText="caption — UA / EN" />
+
+## Радіуси
+
+<div className="flex flex-wrap gap-6 font-sans">
+  <div className="flex flex-col items-center gap-2">
+    <div className="size-32 rounded-control border border-ink-muted bg-surface" />
+    <span className="text-caption text-ink-muted">rounded-control</span>
+  </div>
+  <div className="flex flex-col items-center gap-2">
+    <div className="size-32 rounded-card border border-ink-muted bg-surface" />
+    <span className="text-caption text-ink-muted">rounded-card</span>
+  </div>
+  <div className="flex flex-col items-center gap-2">
+    <div className="size-32 rounded-full border border-ink-muted bg-surface" />
+    <span className="text-caption text-ink-muted">rounded-full</span>
+  </div>
+</div>
+
+## Пропорції
+
+<div className="flex flex-wrap items-end gap-6 font-sans">
+  <div className="flex w-64 flex-col gap-2">
+    <div className="aspect-cover rounded-card border border-ink-muted bg-surface" />
+    <span className="text-caption text-ink-muted">aspect-cover</span>
+  </div>
+  <div className="flex w-48 flex-col gap-2">
+    <div className="aspect-portrait rounded-card border border-ink-muted bg-surface" />
+    <span className="text-caption text-ink-muted">aspect-portrait</span>
+  </div>
+</div>
