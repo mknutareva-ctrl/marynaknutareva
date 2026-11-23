@@ -27,6 +27,7 @@
 - **Пропорції** (`--aspect-*`): `cover` (4/3), `portrait` (3/4).
 - **Шрифт** (`--font-sans`): Manrope через `next/font`, файл `src/app/fonts.ts`.
 - **Лише для сторінок, не для компонентів:** `--container-page` (1296px, `max-w-page`) і `--spacing-section` (96px, `py-section`).
+- **Відступи сторінки поза набором:** `--spacing-page-x` (72px: `px-page-x` у шапці, `py-page-x` у hero) і `--spacing-glow` (384px, `size-glow`, коло світіння). Виняток без токена: логотип `h-10` (40px) і `gap-16` (64px) у hero.
 - **Відступи** окремо не оголошені: беремо кроки Tailwind 2, 3, 4, 6, 8 (8, 12, 16, 24, 32 px), наприклад `p-4`.
 
 ## Компоненти

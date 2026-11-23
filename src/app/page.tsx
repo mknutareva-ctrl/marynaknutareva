@@ -19,11 +19,11 @@ export default function Home() {
       <main>
         <section className="relative overflow-hidden bg-canvas font-sans text-ink">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-            <div className="absolute -top-16 -left-20 size-96 rounded-full bg-glow blur-glow" />
-            <div className="absolute bottom-16 left-1/3 size-96 rounded-full bg-glow blur-glow" />
-            <div className="absolute top-16 right-0 size-96 rounded-full bg-glow blur-glow" />
+            <div className="absolute -top-16 -left-20 size-glow rounded-full bg-glow blur-glow" />
+            <div className="absolute bottom-16 left-1/3 size-glow rounded-full bg-glow blur-glow" />
+            <div className="absolute top-16 right-0 size-glow rounded-full bg-glow blur-glow" />
           </div>
-          <div className="relative mx-auto flex max-w-page flex-col gap-8 px-4 py-8 lg:flex-row lg:gap-6 lg:px-0 lg:py-18">
+          <div className="relative mx-auto flex max-w-page flex-col gap-8 px-4 py-8 lg:flex-row lg:gap-6 lg:px-0 lg:py-page-x">
             <div className="flex flex-1 flex-col gap-16">
               <div className="flex flex-col items-start gap-6">
                 <RoleChip>UX/UI-дизайнерка</RoleChip>
