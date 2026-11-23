@@ -77,18 +77,14 @@ import { Header } from "@/components/Header";
     active: "#works",
     language: "UA",
   },
-  // Під шапкою лежить довгий контент: видно, що шапка прилипає, а відкрите меню його перекриває.
+  // Під шапкою лежить абзац: видно, що відкрите на вузькому екрані меню його перекриває.
   render: (args) => (
     <div>
       <Header {...args} active={args.active || undefined} />
-      <div className="flex flex-col gap-4 p-8">
-        {Array.from({ length: 12 }, (_, index) => (
-          <p key={index} className="text-body text-ink-muted">
-            Контент сторінки під шапкою. Прокрути вниз: шапка лишається вгорі. Відкрите на вузькому
-            екрані меню накриває цей текст, а не зсуває його.
-          </p>
-        ))}
-      </div>
+      <p className="p-8 text-body text-ink-muted">
+        Контент сторінки під шапкою. Відкрите на вузькому екрані меню накриває цей текст, а не
+        зсуває його.
+      </p>
     </div>
   ),
 } satisfies Meta<typeof Header>;
