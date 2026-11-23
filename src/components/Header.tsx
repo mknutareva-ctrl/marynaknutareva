@@ -31,7 +31,7 @@ const focus =
  */
 export function Header({ name, items, active, language = "UA" }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-20 border-b border-line bg-surface-header/80 font-sans backdrop-blur-md">
+    <header className="sticky top-0 z-20 border-b border-line bg-surface-header/80 font-sans backdrop-blur-header">
       <div className="flex items-center gap-2 px-4 py-3 md:px-18 md:py-4">
         <div className="flex flex-1 justify-start">
           <Link href="/" className={`block rounded-control ${focus}`}>

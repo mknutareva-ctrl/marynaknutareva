@@ -21,6 +21,7 @@
   --color-ink-muted: #5b6170; /* приглушений текст */
   --color-danger: #b42318; /* текст помилки й межа поля в стані помилки */
   --color-glow: #ebf6f1; /* декоративне світіння hero */
+  --color-shadow: #000000; /* основа тіней: у --shadow-* береться з прозорістю */
 
   /* ── Типографіка: розмір + висота рядка + трекінг + жирність ─────────── */
   --text-*: initial;
@@ -74,9 +75,28 @@
   /* ── Тіні (стандартні скидаємо) ─────────────────────────────────────── */
   --shadow-*: initial;
 
-  --shadow-chip: 0 1px 1px 0 rgb(0 0 0 / 0.05); /* чіп ролі */
-  --shadow-control: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* кнопки */
-  --shadow-card: 0 4px 6px 0 rgb(0 0 0 / 0.1), 0 2px 4px 0 rgb(0 0 0 / 0.1); /* портрет у hero */
+  --shadow-chip: 0 1px 1px 0 color-mix(in srgb, var(--color-shadow) 5%, transparent); /* чіп ролі */
+  --shadow-control: 0 1px 2px 0 color-mix(in srgb, var(--color-shadow) 5%, transparent); /* кнопки */
+  --shadow-card:
+    0 4px 6px 0 color-mix(in srgb, var(--color-shadow) 10%, transparent),
+    0 2px 4px 0 color-mix(in srgb, var(--color-shadow) 10%, transparent); /* портрет у hero */
+
+  /* ── Розмиття (стандартні скидаємо; ці токени працюють і для backdrop-blur-*) ── */
+  --blur-*: initial;
+
+  --blur-glow: 64px; /* декоративне світіння hero: blur-glow */
+  --blur-header: 12px; /* напівпрозора шапка: backdrop-blur-header */
+
+  /* ── Інші стандартні шкали Tailwind, яких у системі немає, скидаємо ───── */
+  --font-weight-*: initial; /* жирність задана парами в --text-* */
+  --tracking-*: initial; /* трекінг заданий парами в --text-* */
+  --leading-*: initial; /* висота рядка задана парами в --text-* */
+  --drop-shadow-*: initial;
+  --inset-shadow-*: initial;
+  --ease-*: initial;
+  --animate-*: initial;
+  --perspective-*: initial;
+  --container-*: initial; /* max-w-3xl тощо; нижче лишається лише --container-page */
 
   /* ── Пропорції картинок (стандартні aspect-* не скидаємо) ───────────── */
   --aspect-cover: 4 / 3; /* обкладинка роботи */
