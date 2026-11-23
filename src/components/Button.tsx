@@ -9,7 +9,7 @@ const base =
 
 const variants = {
   primary: "border-accent bg-accent text-surface not-aria-disabled:hover:bg-ink",
-  secondary: "border-ink-muted bg-transparent text-ink not-aria-disabled:hover:bg-surface",
+  secondary: "border-line bg-surface text-ink not-aria-disabled:hover:bg-line",
 } as const;
 
 const sizes = {
@@ -18,7 +18,7 @@ const sizes = {
 } as const;
 
 export type ButtonProps = Omit<ComponentProps<"button">, "disabled"> & {
-  /** Вигляд кнопки: `primary` — на кольорі accent, `secondary` — без заливки, з межею ink-muted. */
+  /** Вигляд кнопки: `primary` — на кольорі accent, `secondary` — із заливкою surface і межею line. */
   variant?: keyof typeof variants;
   /** Розмір: `md` — звичайний, `lg` — великий. */
   size?: keyof typeof sizes;
