@@ -21,9 +21,9 @@ export type NavigationProps = {
 };
 
 const link =
-  "block rounded-control px-3 py-2 text-nav transition-colors hover:bg-line hover:text-ink " +
+  "block rounded-control px-3 py-2 text-nav transition-colors hover:underline hover:underline-offset-4 " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
-const linkDefault = "text-ink-muted";
+const linkDefault = "text-ink";
 // Активний пункт: колір accent і підкреслення, щоб позначка не трималась лише на кольорі.
 const linkActive = "text-accent underline underline-offset-4";
 
