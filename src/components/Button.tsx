@@ -18,24 +18,62 @@ const sizes = {
   lg: "px-8 py-4 text-button",
 } as const;
 
-export type ButtonProps = Omit<ComponentProps<"button">, "disabled"> & {
+type Appearance = {
   /** Вигляд кнопки: `primary` — на кольорі accent, `secondary` — із заливкою surface і межею line. */
   variant?: keyof typeof variants;
   /** Розмір: `md` — звичайний, `lg` — великий. */
   size?: keyof typeof sizes;
-  /** Вимикає кнопку через `aria-disabled`: вона лишається у фокусі, але не спрацьовує. */
-  disabled?: boolean;
-  /** Пояснення під вимкненою кнопкою; зв'язується з нею через `aria-describedby`. */
-  disabledReason?: string;
-  /** Якщо задано, замість `<button>` рендериться посилання (`<a>`): для переходів на сторінку чи якір. */
-  href?: string;
 };
+
+type ButtonAsButton = Omit<ComponentProps<"button">, "disabled"> &
+  Appearance & {
+    /** Вимикає кнопку через `aria-disabled`: вона лишається у фокусі, але не спрацьовує. */
+    disabled?: boolean;
+    /** Пояснення під вимкненою кнопкою; зв'язується з нею через `aria-describedby`. */
+    disabledReason?: string;
+    href?: undefined;
+  };
+
+type ButtonAsLink = Appearance &
+  Pick<ComponentProps<"a">, "className" | "children" | "aria-label"> & {
+    /** Якщо задано, замість `<button>` рендериться посилання (`<a>`): для переходів на сторінку чи якір. */
+    href: string;
+    // Посилання не має стану «вимкнено» і не приймає обробників кнопки: TypeScript це забороняє.
+    disabled?: never;
+    disabledReason?: never;
+    onClick?: never;
+    type?: never;
+  };
+
+export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 /**
  * Кнопка дизайн-системи: основна і другорядна, два розміри.
  * Вимкнена кнопка лишається доступною з клавіатури (`aria-disabled`), а причину читає скрінрідер.
+ * З `href` це посилання з тим самим виглядом; `disabled`, `onClick` і `type` для нього не приймаються.
  */
-export function Button({
+export function Button(props: ButtonProps) {
+  if (props.href !== undefined) return <ButtonLink {...props} />;
+  return <ButtonElement {...props} />;
+}
+
+function ButtonLink({
+  variant = "primary",
+  size = "md",
+  className,
+  href,
+  children,
+  ...rest
+}: ButtonAsLink) {
+  const classes = [base, variants[variant], sizes[size], className].filter(Boolean).join(" ");
+  return (
+    <Link href={href} aria-label={rest["aria-label"]} className={classes}>
+      {children}
+    </Link>
+  );
+}
+
+function ButtonElement({
   variant = "primary",
   size = "md",
   disabled = false,
@@ -43,21 +81,12 @@ export function Button({
   className,
   onClick,
   type = "button",
-  href,
   children,
   ...rest
-}: ButtonProps) {
+}: ButtonAsButton) {
   const reasonId = useId();
   const showReason = disabled && Boolean(disabledReason);
   const classes = [base, variants[variant], sizes[size], className].filter(Boolean).join(" ");
-
-  if (href !== undefined) {
-    return (
-      <Link href={href} aria-label={rest["aria-label"]} className={classes}>
-        {children}
-      </Link>
-    );
-  }
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
     if (disabled) {
