@@ -44,3 +44,6 @@ next-env.d.ts
 storybook-static
 
 .vercel
+
+# storybook, зібраний для публікації разом із сайтом
+/public/storybook
