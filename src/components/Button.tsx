@@ -1,9 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useId, type ComponentProps, type MouseEvent } from "react";
 
 const base =
-  "inline-flex items-center justify-center rounded-control border font-sans transition-colors " +
+  "inline-flex items-center justify-center rounded-control border font-sans shadow-control transition-colors " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink " +
   "aria-disabled:cursor-not-allowed aria-disabled:opacity-50";
 
@@ -26,6 +27,8 @@ export type ButtonProps = Omit<ComponentProps<"button">, "disabled"> & {
   disabled?: boolean;
   /** Пояснення під вимкненою кнопкою; зв'язується з нею через `aria-describedby`. */
   disabledReason?: string;
+  /** Якщо задано, замість `<button>` рендериться посилання (`<a>`): для переходів на сторінку чи якір. */
+  href?: string;
 };
 
 /**
@@ -40,11 +43,21 @@ export function Button({
   className,
   onClick,
   type = "button",
+  href,
   children,
   ...rest
 }: ButtonProps) {
   const reasonId = useId();
   const showReason = disabled && Boolean(disabledReason);
+  const classes = [base, variants[variant], sizes[size], className].filter(Boolean).join(" ");
+
+  if (href !== undefined) {
+    return (
+      <Link href={href} aria-label={rest["aria-label"]} className={classes}>
+        {children}
+      </Link>
+    );
+  }
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
     if (disabled) {
@@ -62,7 +75,7 @@ export function Button({
         aria-disabled={disabled || undefined}
         aria-describedby={showReason ? reasonId : rest["aria-describedby"]}
         onClick={handleClick}
-        className={[base, variants[variant], sizes[size], className].filter(Boolean).join(" ")}
+        className={classes}
       >
         {children}
       </button>
